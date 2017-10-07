@@ -1,6 +1,6 @@
 const express = require("express")
-var motor = require("motor")
-
+const app = express()
+var motor = require("./motor")
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
