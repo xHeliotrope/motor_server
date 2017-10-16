@@ -4,11 +4,13 @@
   "description": "motors and servers",
   "main": "index.js",
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "^4.15.3",
     "i2c-bus": "^1.2.2",
     "johnny-five": "^0.11.3",
     "pigpio": "^0.6.0",
-    "raspi-io": "^8.0.1"
+    "raspi-io": "^8.0.1",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
