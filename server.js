@@ -27,32 +27,27 @@ app.get('/', function(req, res) {
     res.render('pages/index');
 })
 
-let tweet = "fake tweet"
+let tweet = "connecting..."
 
-client.get('statuses/user_timeline', {screen_name: 'ChirpTheMsgMstr'}, function(error, tweets, response) {
-    tweets = tweets.map(function(tweet){
-	return tweet.text
-    });
-    if (!error) {
-	console.log(tweets);
-	tweet = tweets[0];
-    }
+client.get('statuses/user_timeline', { screen_name: 'ChirpTheMsgMstr' }, (error, tweets, response) => {
+	console.log(tweets)
+        tweets = tweets.map((tweet) => { return tweet.text });
+        if (!error) { tweet = tweets[0]; }
 });
 
 
-let stream = client.stream('statuses/filter', {follow: '243730082,1909219404'}, stream => {
-	console.log('hey im in here')
-	stream.on('data', event => {
-	    let tweet = event
-	    if(tweet.delete) {
-		tweet.text = "the tweet has been discarded"
-	    }
-	    tweet = tweet.text
-	})
+let stream = client.stream('statuses/filter', {follow: '920299462282698752'}, stream => {
+    stream.on('data', event => {
+        let tweet = event
+	if(tweet.delete) {
+	    tweet.text = "the tweet has been discarded"
+	}
+	tweet = tweet.text
+	console.log(tweet)
     })
+})
 
 io.on('connection', function(socket){
-    console.log(tweet);
     socket.on('disconnect', function(){
       console.log('user disconnected');
     })
